@@ -6,6 +6,8 @@ from django.utils.encoding import python_2_unicode_compatible
 @python_2_unicode_compatible
 class Redirect(models.Model):
     site = models.ForeignKey(Site)
+    name = models.CharField(max_length=255,
+        help_text=_("Give this link a name. Used for GA campaign tracking and internal reference."))
     old_path = models.CharField(_('redirect from'), max_length=200, db_index=True,
         help_text=_("This should be an absolute path, excluding the domain name. Example: '/events/search/'."))
     new_path = models.CharField(_('redirect to'), max_length=200, blank=True,
